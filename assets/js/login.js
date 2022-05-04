@@ -23,8 +23,8 @@ $(function() {
         let data = $(this).serialize()
 
         $.ajax({
-            type: 'POST',
-            url: 'http://www.liulongbin.top:3007/api/reguser',
+            method: 'POST',
+            url: '/api/reguser',
             data: data,
             // username: $('#form_reg [name=username]').val(),
             // password: $('#form_reg [name=password]').val()
@@ -36,6 +36,22 @@ $(function() {
                 console.log(res);
                 layer.msg('注册成功！', { icon: 6 })
                 $('#link_login').click()
+            }
+        })
+    })
+    $('#form_login').on('submit', function(e) {
+        e.preventDefault()
+        $.ajax({
+            method: 'POST',
+            url: '/api/login',
+            data: $(this).serialize(),
+            success: function(res) {
+                if (res.status !== 0) {
+                    return layer.msg(res.message)
+                }
+                localStorage.setItem('token', res.token)
+                layer.msg('登录成功!')
+                location.href = '/index.html'
             }
         })
     })

@@ -9,7 +9,6 @@ body {
 }
 
 .loginAndRegBox {
-    padding: 30px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -24,7 +23,30 @@ body {
     background: url('../images/login_title.png') no-repeat center;
 }
 
-#links {
+.layui-form-item {
+    position: relative;
+}
+
+.layui-form-item i {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.layui-form-item input {
+    padding-left: 32px;
+}
+
+.layui-form {
+    padding: 0 30px;
+}
+
+.layui-form a {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.links {
     display: flex;
     justify-content: flex-end;
 }

@@ -1,16 +1,13 @@
 $(function() {
-    // 切换登录注册
     $('#link_reg').click(function() {
         $('.login_box').hide()
         $('.reg_box').show()
     })
     $('#link_login').click(function() {
-            $('.reg_box').hide()
-            $('.login_box').show()
-        })
-        //内置对象正则判断
+        $('.reg_box').hide()
+        $('.login_box').show()
+    })
     let form = layui.form
-        // layui内置对象弹窗
     let layer = layui.layer
     form.verify({
             pwd: [
@@ -21,11 +18,10 @@ $(function() {
                 if (val !== value) return '两次密码不一致'
             }
         })
-        // 注册账号成功后跳转登录页
+        // 注册
     $('#form_reg').on('submit', function(e) {
             e.preventDefault()
             let data = $(this).serialize()
-
             $.ajax({
                 method: 'POST',
                 url: '/api/reguser',
@@ -37,13 +33,13 @@ $(function() {
                     if (res.status !== 0) {
                         return layer.msg(res.message)
                     }
-                    console.log(res);
+                    // console.log(res);
                     layer.msg('注册成功！', { icon: 6 })
                     $('#link_login').click()
                 }
             })
         })
-        // 登录页面成功后跳转后台主页
+        // 注册后登录
     $('#form_login').on('submit', function(e) {
         e.preventDefault()
         $.ajax({
@@ -54,10 +50,8 @@ $(function() {
                 if (res.status !== 0) {
                     return layer.msg(res.message)
                 }
-                // 本地存储token值某些数据设置了权限
                 localStorage.setItem('token', res.token)
-                layer.msg('登录成功!')
-                    //成功后location自动跳转
+                    // layer.msg('登录成功!')
                 location.href = '/index.html'
             }
         })
